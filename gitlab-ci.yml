@@ -1,0 +1,55 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  AWS_REGION: $AWS_REGION
+
+build-backend:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - backend/src/
+
+build-frontend:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/src/
+
+test-backend:
+  stage: test
+  script:
+    - npm run test
+
+test-frontend:
+  stage: test
+  script:
+    - npm run test
+
+deploy-backend:
+  stage: deploy
+  script:
+    - terraform init -config=backend/terraform.tf
+    - terraform apply -config=backend/terraform.tf
+  environment:
+    name: production
+    url: https://project_devops.com
+
+deploy-frontend:
+  stage: deploy
+  script:
+    - terraform init -config=frontend/terraform.tf
+    - terraform apply -config=frontend/terraform.tf
+  environment:
+    name: production
+    url: https://project_devops.com

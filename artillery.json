@@ -1,0 +1,27 @@
+{
+  "config": {
+    "phases": [
+      {
+        "duration": 60,
+        "arrivalRate": 100000
+      }
+    ],
+    "defaults": {
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "name": "API",
+      "flow": [
+        {
+          "post": {
+            "url": "/api"
+          }
+        }
+      ]
+    }
+  ]
+}

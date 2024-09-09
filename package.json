@@ -1,0 +1,10 @@
+{
+  "name": "project_devops",
+  "version": "1.0.0",
+  "scripts": {
+    "artillery": "artillery run artillery.json"
+  },
+  "dependencies": {
+    "artillery": "^1.6.0"
+  }
+}
